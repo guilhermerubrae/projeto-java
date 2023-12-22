@@ -1,5 +1,5 @@
 package ecommerce.model;
 
-public class Pedido {
+public class Carrinho {
 
 }
