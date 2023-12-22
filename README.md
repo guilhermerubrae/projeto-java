@@ -1,27 +1,12 @@
-# Projeto de Conta Bancária em Java
+# Sistema de Gerenciamento de E-commerce para Venda de Ingressos de Shows
 
-Este é o projeto final do Módulo 1 do Bootcamp Java Web Full Stack da Generation Brasil.
+Este projeto Java é um sistema simples de e-commerce desenvolvido como parte da finalização do primeiro bloco do curso na Generation Brasil. O sistema é projetado para gerenciar a venda de ingressos para shows de 3 artistas no contexto do Rock in Rio.
 
-## Descrição
+## Recursos Principais
 
-O projeto é uma implementação simplificada de uma conta bancária em Java. Ele oferece funcionalidades básicas, como criar uma conta, realizar depósitos, saques e consultas de saldo.
+1. **Cadastro de Ingressos:** Os usuários podem cadastrar novos ingressos fornecendo informações como artista, tipo de ingresso, preço e quantidade disponível.
+2. **Visualização de Ingressos:** Exibe todos os ingressos disponíveis, mostrando detalhes importantes para cada um.
+3. **Atualização de Ingressos:** Permite aos usuários modificar detalhes de um ingresso existente, como preço ou quantidade disponível.
+4. **Remoção de Ingressos:** Possibilita a exclusão de ingressos que não estão mais disponíveis para venda.
+5. **Checkout Simples:** Implementa um processo de checkout básico para os usuários comprarem ingressos.
 
-## Funcionalidades
-
-1. **Criar Conta:**
-   - Método para criar uma nova conta bancária.
-
-2. **Depósito:**
-   - Método para realizar depósitos na conta.
-
-3. **Saque:**
-   - Método para realizar saques da conta.
-
-4. **Consulta de Saldo:**
-   - Método para consultar o saldo atual da conta.
-
-## Pré-requisitos
-
-- JDK (Java Development Kit) instalado na máquina.
-- IDE Java (Eclipse, IntelliJ, etc.) para facilitar o desenvolvimento e execução.
-# projeto-java
