@@ -1,46 +1,57 @@
 package ecommerce.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import ecommerce.repository.EcommerceRepository;
-
-public class Carrinho implements EcommerceRepository {
-    private List<IngressoLocal> ingressos;
+public class Carrinho {
+    private IngressoLocal[] ingressos;
+    private int tamanho;
 
     public Carrinho() {
-        this.ingressos = new ArrayList<>();
+        this.ingressos = new IngressoLocal[10]; // ajuste o tamanho conforme necessário
+        this.tamanho = 0;
     }
 
-    @Override
     public void adicionarIngresso(String localidade, double preco, int numero) {
-        ingressos.add(new IngressoLocal(localidade, preco, numero));
+        if (tamanho < ingressos.length) {
+            ingressos[tamanho++] = new IngressoLocal(localidade, preco, numero);
+        } else {
+            // Caso o array esteja cheio, você pode expandi-lo ou tratar de alguma outra forma.
+            System.out.println("Carrinho cheio. Não é possível adicionar mais ingressos.");
+        }
     }
 
-    @Override
     public double calcularPrecoTotal() {
         double precoTotal = 0;
-        for (IngressoLocal ingresso : ingressos) {
-            precoTotal += ingresso.calcularPreco();
+        for (int i = 0; i < tamanho; i++) {
+            precoTotal += ingressos[i].calcularPreco();
         }
         return precoTotal;
     }
 
-    @Override
-    public List<IngressoLocal> getIngressos() {
+    public IngressoLocal[] getIngressos() {
         return ingressos;
     }
 
-    @Override
     public void removerIngresso(int numeroIngresso) {
-        ingressos.removeIf(ingresso -> ingresso.getNumero() == numeroIngresso);
+        for (int i = 0; i < tamanho; i++) {
+            if (ingressos[i].getNumero() == numeroIngresso) {
+                // Mova os elementos à frente do índice de remoção uma posição para trás
+                for (int j = i; j < tamanho - 1; j++) {
+                    ingressos[j] = ingressos[j + 1];
+                }
+                // Ajuste o tamanho para indicar que um elemento foi removido
+                tamanho--;
+                return; // Saia após remover o ingresso
+            }
+        }
+        System.out.println("Ingresso não encontrado no carrinho.");
     }
 
-    @Override
     public void limparIngressos() {
-        ingressos.clear();
+        // Se desejar, você pode criar um novo array ou simplesmente ajustar o tamanho
+        tamanho = 0;
     }
 
-	public void limparCarrinho() {
-		
-	}
+    public void limparCarrinho() {
+        ingressos = new IngressoLocal[10]; // ajuste o tamanho conforme necessário
+        tamanho = 0;
+    }
 }

@@ -1,8 +1,6 @@
-
 package ecommerce;
 
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import conta.util.Cores;
@@ -11,58 +9,48 @@ import ecommerce.model.IngressoLocal;
 import ecommerce.model.User;
 
 public class Menu {
-    private static Scanner scanner = new Scanner(System.in);
-    private static User usuario;
-    private static Carrinho carrinho;
+	private static Scanner scanner = new Scanner(System.in);
+	private static User usuario;
+	private static Carrinho carrinho;
 
-    public static void main(String[] args) {
-        carrinho = new Carrinho(); // Adicione esta linha
-        cadastrarUsuario();
+	public static void main(String[] args) {
+		carrinho = new Carrinho(); // Adicione esta linha
+		cadastrarUsuario();
 
-        while (true) {
-            exibirMenu();
-            try {
-                int escolha = escolhaUser();
-                processarEscolha(escolha);
-            } catch (InputMismatchException e) {
-                scanner.nextLine();
-                exibirMensagem("Erro: Por favor, insira um número válido.");
-            }
-        }
-    }
+		while (true) {
+			exibirMenu();
+			try {
+				int escolha = escolhaUser();
+				processarEscolha(escolha);
+			} catch (InputMismatchException e) {
+				scanner.nextLine();
+				exibirMensagem("Erro: Por favor, insira um número válido.");
+			}
+		}
+	}
 
 	private static void cadastrarUsuario() {
 		System.out.println(Cores.TEXT_WHITE + Cores.ANSI_BLACK_BACKGROUND);
 		System.out.println("╔═════════════════════════════════════════════════════╗");
 		System.out.println("║              Beyonce Renaissance Tour!              ║");
 		System.out.println("╚═════════════════════════════════════════════════════╝");
-		
-		    System.out.print("Digite seu nome: ");
-		    String nome = scanner.nextLine();
 
-		    System.out.print("Digite seu e-mail: ");
-		    String email = scanner.nextLine();
+		System.out.print("Digite seu nome: ");
+		String nome = scanner.nextLine();
 
-		    System.out.print("Digite seu CPF: ");
-		    String cpf = scanner.nextLine();
+		System.out.print("Digite seu e-mail: ");
+		String email = scanner.nextLine();
 
-		    System.out.print("Digite sua idade: ");
-		    int idade = scanner.nextInt();
+		System.out.print("Digite seu CPF: ");
+		String cpf = scanner.nextLine();
 
-		    usuario = new User(nome, email, cpf, idade);
+		System.out.print("Digite sua idade: ");
+		int idade = scanner.nextInt();
 
-		    while (true) {
-		        exibirMenu();
-		        try {
-		            int escolha = escolhaUser();
-		            processarEscolha(escolha);
-		        } catch (InputMismatchException e) {
-		            scanner.nextLine();
-		            exibirMensagem("Erro: Por favor, insira um número válido.");
-		        }
-		    }
-		}
+		usuario = new User(nome, email, cpf, idade);
 
+		exibirMenu();
+	}
 
 	private static int escolhaUser() {
 		try {
@@ -90,98 +78,98 @@ public class Menu {
 		System.out.println("╚═════════════════════════════════════════════════════╝");
 	}
 
-	private static void processarEscolha(int escolha) {
-		switch (escolha) {
-		case 1:
-			adicionarIngresso("Pista", 800.0);
-			break;
-		case 2:
-			adicionarIngresso("Principal", 1000.0);
-			break;
-		case 3:
-			adicionarIngresso("Estádio", 500.0);
-			break;
-		case 4:
-			listarIngressos();
-			break;
-		case 5:
-			removerIngresso();
-			break;
-		case 6:
-			finalizarCompra();
-			break;
-		case 7:
-			exibirMensagem("Compra feita com sucesso! Aproveite o show!");
-			System.exit(0);
-		default:
-			exibirMensagem("Opção inválida. Por favor, escolha novamente.");
-		}
-	}
-
-	private static void adicionarIngresso(String localidade, double preco) {
-	    if (usuario.getIdade() < 18) {
-	        exibirMensagem("Desculpe, apenas maiores de 18 anos podem comprar ingressos para o show.");
-	    } else {
-	        int numero = carrinho.getIngressos().size() + 1;
-	        carrinho.adicionarIngresso(localidade, preco, numero);
-	        exibirMensagem("Ingresso para a " + localidade + " adicionado ao carrinho.");
-	    }
-	}
-
-
-
-
-	private static void listarIngressos() {
-		List<IngressoLocal> ingressos = carrinho.getIngressos();
-		if (ingressos.isEmpty()) {
-			exibirMensagem("Carrinho vazio. Adicione ingressos primeiro.");
-		} else {
-			System.out.println("Ingressos no carrinho:");
-			for (IngressoLocal ingresso : ingressos) {
-				ingresso.exibirDetalhes();
-			}
-		}
-	}
-
-	private static void removerIngresso() {
-		listarIngressos();
-		System.out.print("Digite o número do ingresso que deseja remover: ");
-		int numeroIngresso = scanner.nextInt();
-		carrinho.removerIngresso(numeroIngresso);
-		exibirMensagem("Ingresso removido do carrinho.");
-	}
-
-	private static void finalizarCompra() {
-	    List<IngressoLocal> ingressos = carrinho.getIngressos();
-	    if (ingressos.isEmpty()) {
-	        exibirMensagem("Carrinho vazio. Adicione ingressos primeiro.");
-	    } else {
-	        try {
-	            exibirMensagem("Compra de ingressos finalizada com sucesso! Aproveite o show!");
-	            exibirDetalhesCompra();
-	            carrinho.limparIngressos(); 
-	            System.exit(0);
-	        } catch (ArithmeticException e) {
-	            exibirMensagem("Erro ao calcular o total a pagar. Por favor, tente novamente.");
-	            carrinho.limparIngressos(); 
-	            System.exit(1);
+	   private static void processarEscolha(int escolha) {
+	        switch (escolha) {
+	            case 1:
+	                adicionarIngresso("Pista", 800.0);
+	                break;
+	            case 2:
+	                adicionarIngresso("Principal", 1000.0);
+	                break;
+	            case 3:
+	                adicionarIngresso("Estádio", 500.0);
+	                break;
+	            case 4:
+	                listarIngressos();
+	                break;
+	            case 5:
+	                removerIngresso();
+	                break;
+	            case 6:
+	                finalizarCompra();
+	                break;
+	            case 7:
+	                exibirMensagem("Compra feita com sucesso! Aproveite o show!");
+	                System.exit(0);
+	            default:
+	                exibirMensagem("Opção inválida. Por favor, escolha novamente.");
 	        }
 	    }
-	}
 
+	    private static void adicionarIngresso(String localidade, double preco) {
+	        if (usuario.getIdade() < 18) {
+	            exibirMensagem("Desculpe, apenas maiores de 18 anos podem comprar ingressos para o show.");
+	        } else {
+	            int numero = carrinho.getIngressos().length + 1;
+	            carrinho.adicionarIngresso(localidade, preco, numero);
+	            exibirMensagem("Ingresso para a " + localidade + " adicionado ao carrinho.");
+	        }
+	    }
 
-	private static void exibirDetalhesCompra() {
-		System.out.println("Detalhes da Compra:");
-		System.out.println("Usuário: " + usuario.getNome() + ", Email: " + usuario.getEmail());
-		System.out.println("Ingressos:");
-		List<IngressoLocal> ingressos = carrinho.getIngressos();
-		for (IngressoLocal ingresso : ingressos) {
-			ingresso.exibirDetalhes();
-		}
-		System.out.println("Total a pagar: R$" + carrinho.calcularPrecoTotal());
-	}
+	    private static void listarIngressos() {
+	        IngressoLocal[] ingressos = carrinho.getIngressos();
+	        if (ingressos[0] == null) {
+	            exibirMensagem("Carrinho vazio. Adicione ingressos primeiro.");
+	        } else {
+	            System.out.println("Ingressos no carrinho:");
+	            for (IngressoLocal ingresso : ingressos) {
+	                if (ingresso != null) {
+	                    ingresso.exibirDetalhes();
+	                }
+	            }
+	        }
+	    }
 
-	private static void exibirMensagem(String mensagem) {
-		System.out.println(mensagem);
+	    private static void removerIngresso() {
+	        listarIngressos();
+	        System.out.print("Digite o número do ingresso que deseja remover: ");
+	        int numeroIngresso = scanner.nextInt();
+	        carrinho.removerIngresso(numeroIngresso);
+	        exibirMensagem("Ingresso removido do carrinho.");
+	    }
+
+	    private static void finalizarCompra() {
+	        IngressoLocal[] ingressos = carrinho.getIngressos();
+	        if (ingressos[0] == null) {
+	            exibirMensagem("Carrinho vazio. Adicione ingressos primeiro.");
+	        } else {
+	            try {
+	                exibirMensagem("Compra de ingressos finalizada com sucesso! Aproveite o show!");
+	                exibirDetalhesCompra();
+	                carrinho.limparCarrinho();
+	                System.exit(0);
+	            } catch (ArithmeticException e) {
+	                exibirMensagem("Erro ao calcular o total a pagar. Por favor, tente novamente.");
+	                carrinho.limparCarrinho();
+	                System.exit(1);
+	            }
+	        }
+	    }
+
+	    private static void exibirDetalhesCompra() {
+	        System.out.println("Detalhes da Compra:");
+	        System.out.println("Usuário: " + usuario.getNome() + ", Email: " + usuario.getEmail());
+	        System.out.println("Ingressos:");
+	        IngressoLocal[] ingressos = carrinho.getIngressos();
+	        for (IngressoLocal ingresso : ingressos) {
+	            if (ingresso != null) {
+	                ingresso.exibirDetalhes();
+	            }
+	        }
+	        System.out.println("Total a pagar: R$" + carrinho.calcularPrecoTotal());
+	    }
+
+	    private static void exibirMensagem(String mensagem) {
+	        System.out.println(mensagem);
+	    }
 	}
-}

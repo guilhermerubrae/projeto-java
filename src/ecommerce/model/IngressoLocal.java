@@ -1,9 +1,9 @@
 package ecommerce.model;
 
 public class IngressoLocal extends Pedido.Venda {
-    private int numero; 
+    private int numero;
     private double preco;
-	private String localidade;
+    private String localidade;
 
     public IngressoLocal(String localidade, double preco, int numero) {
         this.localidade = localidade;
@@ -13,7 +13,7 @@ public class IngressoLocal extends Pedido.Venda {
 
     @Override
     public void exibirDetalhes() {
-        System.out.println("Ingresso Número:" + numero + " para: " + localidade);
+        System.out.println("Ingresso Número: " + numero + " para: " + localidade + ", Preço: R$" + preco);
     }
 
     @Override
@@ -24,8 +24,4 @@ public class IngressoLocal extends Pedido.Venda {
     public int getNumero() {
         return numero;
     }
-
-	public char[] getLocalidade() {
-		return null;
-	}
 }
