@@ -1,6 +1,6 @@
-# Beyonce Renaissance Tour E-commerce
+# Renaissance Tour E-commerce <🎙️/>
 
-Este projeto consiste em um sistema simples de e-commerce para a venda de ingressos para a turnê "Beyonce Renaissance". Os usuários podem se cadastrar, visualizar opções de ingressos, adicionar ao carrinho, remover do carrinho e finalizar a compra. O sistema mantém o controle do carrinho do usuário e exibe detalhes da compra no final.
+Este projeto consiste em um sistema simples de e-commerce para a venda de ingressos para a turnê "Renaissance" da cantora Beyonce. Os usuários podem se cadastrar, visualizar opções de ingressos, adicionar ao carrinho, remover do carrinho e finalizar a compra. O sistema mantém o controle do carrinho do usuário e exibe detalhes da compra no final.
 
 ## Funcionalidades
 
