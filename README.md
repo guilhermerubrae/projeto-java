@@ -25,7 +25,7 @@ Este projeto consiste em um sistema simples de e-commerce para a venda de ingres
 **ecommerce.model:**
 - Pacote contendo as classes relacionadas ao modelo de dados.
   - `User`: Representa um usuário.
-  - `IngressoLocal`: Representa um ingresso.
+  - `IngressoLocal`: Representa um ingresso e localidade no ambiente do show.
   - `Carrinho`: Classe responsável pelo gerenciamento do carrinho de compras.
   - `Pedido`: Representa um pedido contendo os ingressos selecionados.
 
